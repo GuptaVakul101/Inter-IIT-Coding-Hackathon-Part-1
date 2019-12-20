@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".maintenance_request">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_button"
         android:orientation="horizontal"
         android:layout_alignParentTop="true"
@@ -13,23 +14,41 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btnChoose"
-            android:text="Choose"
-            android:layout_weight="1"
+            android:id="@+id/btnUpload"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Upload"
+            app:layout_constraintStart_toEndOf="@id/btnlocation"
+            app:layout_constraintEnd_toStartOf="@id/btnChoose"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
 
         <Button
-            android:id="@+id/btnUpload"
-            android:text="Upload"
-            android:layout_weight="1"
+            android:id="@+id/btnChoose"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Take Photo"
+            app:layout_constraintStart_toEndOf="@id/btnUpload"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/btnlocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Get Location"
+            app:layout_constraintEnd_toStartOf="@+id/btnUpload"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"/>
 
 </RelativeLayout>
