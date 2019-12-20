@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ContractorHomeActivity"></activity>
+        <activity android:name=".Project_Details"></activity>
+        <activity android:name=".ContractorHomeActivity" />
         <activity android:name=".ContractorSignupActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".UserSignupActivity" />
