@@ -16,7 +16,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
     Toolbar mTopToolbar;
     TabLayout tabLayout;
-    int numTabs = 1;
+    int numTabs = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class UserHomeActivity extends AppCompatActivity {
 
 
         tabLayout.getTabAt(0).setText("Home");
+        tabLayout.getTabAt(1).setText("Construction");
+        tabLayout.getTabAt(2).setText("Profile");
 //        tabLayout.getTabAt(1).setText("Existing projects");
 //        tabLayout.getTabAt(2).setText("Report a problem");
     }

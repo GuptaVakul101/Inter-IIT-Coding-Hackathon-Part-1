@@ -35,6 +35,7 @@ public class UserSignupActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+
     private FirebaseAuth mAuth;
 
     @Override

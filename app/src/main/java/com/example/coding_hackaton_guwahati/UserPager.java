@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 public class UserPager extends FragmentStatePagerAdapter {
 
     private maintenance_request tab0 = null;
+    private construction_list tab1 = null;
+    private user_profile tab2 = null;
 
     //integer to count number of tabs
     int tabCount;
@@ -28,6 +30,18 @@ public class UserPager extends FragmentStatePagerAdapter {
                     tab0 = new maintenance_request();
                 }
                 return tab0;
+
+            case 1:
+                if(tab1 == null){
+                    tab1 = new construction_list();
+                }
+                return tab1;
+
+            case 2:
+                if(tab2 == null){
+                    tab2 = new user_profile();
+                }
+                return tab2;
 
             default:
                 return null;
