@@ -2,12 +2,15 @@ package com.example.coding_hackaton_guwahati;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,17 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        test=findViewById(R.id.tst_btn);
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MyFragment fragment = new MyFragment();
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fra, fragment);
+//                transaction.commit();
+//            }
+//        });
 
         signupUserLink = findViewById(R.id.signup_user_link);
         emailText = findViewById(R.id.input_email);
@@ -169,5 +183,6 @@ public class MainActivity extends AppCompatActivity
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         loginBtn.setEnabled(true);
+
     }
 }

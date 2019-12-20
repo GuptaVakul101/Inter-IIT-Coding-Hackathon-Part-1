@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "991072416304-ls4h6vg46a3f6pm6t95b5varsi9vqu9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coding_hackaton_guwahati",
+            "certificate_hash": "7bb91c1c910c4f31240e0882427bc8a724447229"
+          }
+        },
+        {
           "client_id": "991072416304-sdq42b18613qldupgqccu9kba481imvc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
