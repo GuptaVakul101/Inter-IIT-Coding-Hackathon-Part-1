@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class Pager extends FragmentStatePagerAdapter {
+public class UserPager extends FragmentStatePagerAdapter {
 
     private maintenance_request tab0 = null;
 
@@ -13,7 +13,7 @@ public class Pager extends FragmentStatePagerAdapter {
 //    private String[] tabTitles = new String[]{"Tab1", "Tab2", "Tab3"};
 
     //Constructor to the class
-    public Pager(FragmentManager fm, int tabCount) {
+    public UserPager(FragmentManager fm, int tabCount) {
         super(fm);
         this.tabCount = tabCount;
     }

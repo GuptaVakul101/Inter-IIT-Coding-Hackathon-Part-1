@@ -12,7 +12,8 @@ import android.view.MenuItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class UserHomeActivity extends AppCompatActivity {
+public class ContractorHomeActivity extends AppCompatActivity {
+
 
     Toolbar mTopToolbar;
     TabLayout tabLayout;
@@ -21,7 +22,7 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_home);
+        setContentView(R.layout.activity_contractor_home);
 
         mTopToolbar = findViewById(R.id.my_toolbar);
         mTopToolbar.setTitle("Name of the app");
@@ -38,16 +39,14 @@ public class UserHomeActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.pager);
 
         //Creating our pager adapter
-        UserPager adapter = new UserPager(getSupportFragmentManager(), tabLayout.getTabCount());
+        ContractorPager adapter = new ContractorPager(getSupportFragmentManager(), tabLayout.getTabCount());
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-
         tabLayout.getTabAt(0).setText("Home");
-//        tabLayout.getTabAt(1).setText("Existing projects");
-//        tabLayout.getTabAt(2).setText("Report a problem");
+
     }
 
     @Override
