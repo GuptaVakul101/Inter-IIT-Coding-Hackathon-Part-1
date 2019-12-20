@@ -2,17 +2,21 @@ package com.example.coding_hackaton_guwahati;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class UserHomeActivity extends AppCompatActivity {
 
     Toolbar mTopToolbar;
+
+    int numTabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,28 @@ public class UserHomeActivity extends AppCompatActivity {
         mTopToolbar = findViewById(R.id.my_toolbar);
         mTopToolbar.setTitle("Name of the app");
         setSupportActionBar(mTopToolbar);
+
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        for(int i = 0; i < numTabs; i++){
+            tabLayout.addTab(tabLayout.newTab());
+        }
+
+
+        //Initializing viewPager
+        //This is our viewPager
+        ViewPager viewPager = findViewById(R.id.pager);
+
+        //Creating our pager adapter
+        ViewPager adapter = new ViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        //Adding adapter to pager
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+        tabLayout.getTabAt(0).setText("Home");
+        tabLayout.getTabAt(1).setText("Existing projects");
+        tabLayout.getTabAt(2).setText("Report a problem");
     }
 
     @Override
