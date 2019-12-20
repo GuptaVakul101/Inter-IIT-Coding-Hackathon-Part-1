@@ -15,8 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class UserHomeActivity extends AppCompatActivity {
 
     Toolbar mTopToolbar;
-
-    int numTabs;
+    TabLayout tabLayout;
+    int numTabs = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class UserHomeActivity extends AppCompatActivity {
         mTopToolbar.setTitle("Name of the app");
         setSupportActionBar(mTopToolbar);
 
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout = findViewById(R.id.tab_layout);
         for(int i = 0; i < numTabs; i++){
             tabLayout.addTab(tabLayout.newTab());
         }
@@ -38,7 +38,7 @@ public class UserHomeActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.pager);
 
         //Creating our pager adapter
-        ViewPager adapter = new ViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
+        Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
@@ -46,8 +46,8 @@ public class UserHomeActivity extends AppCompatActivity {
 
 
         tabLayout.getTabAt(0).setText("Home");
-        tabLayout.getTabAt(1).setText("Existing projects");
-        tabLayout.getTabAt(2).setText("Report a problem");
+//        tabLayout.getTabAt(1).setText("Existing projects");
+//        tabLayout.getTabAt(2).setText("Report a problem");
     }
 
     @Override

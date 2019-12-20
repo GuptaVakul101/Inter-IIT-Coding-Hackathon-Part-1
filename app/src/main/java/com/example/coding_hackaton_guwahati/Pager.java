@@ -4,16 +4,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class ViewPager extends FragmentStatePagerAdapter {
+public class Pager extends FragmentStatePagerAdapter {
 
-    private UserHomeFragment tab0 = null;
+    private maintenance_request tab0 = null;
 
     //integer to count number of tabs
     int tabCount;
 //    private String[] tabTitles = new String[]{"Tab1", "Tab2", "Tab3"};
 
     //Constructor to the class
-    public ViewPager(FragmentManager fm, int tabCount) {
+    public Pager(FragmentManager fm, int tabCount) {
         super(fm);
         this.tabCount = tabCount;
     }
@@ -25,7 +25,7 @@ public class ViewPager extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 if(tab0 == null){
-                    tab0 = new UserHomeFragment();
+                    tab0 = new maintenance_request();
                 }
                 return tab0;
 
