@@ -23,10 +23,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
 {
-    private static final int REQUEST_SIGNUP = 0;
+    private static final int REQUEST_USER_SIGNUP = 0;
     private static final int REQUEST_USER_HOME = 1;
+    private static final int REQUEST_CONTRACTOR_SIGNUP = 3;
 
-    TextView signupUserLink;
+    TextView signupUserLink, signupContractorLink;
     EditText emailText, passwdText;
     Button loginBtn;
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity
 //        });
 
         signupUserLink = findViewById(R.id.signup_user_link);
+        signupContractorLink = findViewById(R.id.signup_contractor_link);
         emailText = findViewById(R.id.input_email);
         passwdText = findViewById(R.id.input_password);
         loginBtn = findViewById(R.id.btn_login);
@@ -61,7 +63,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UserSignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                startActivityForResult(intent, REQUEST_USER_SIGNUP);
+            }
+        });
+
+        signupContractorLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ContractorSignupActivity.class);
+                startActivityForResult(intent, REQUEST_CONTRACTOR_SIGNUP);
             }
         });
 
@@ -162,13 +172,17 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_SIGNUP) {
+        if (requestCode == REQUEST_USER_SIGNUP) {
             if (resultCode == RESULT_OK) {
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
+
             }
         }
         else if(requestCode == REQUEST_USER_HOME){
+            if(resultCode == RESULT_OK){
+                
+            }
+        }
+        else if(requestCode == REQUEST_CONTRACTOR_SIGNUP){
             if(resultCode == RESULT_OK){
 
             }
