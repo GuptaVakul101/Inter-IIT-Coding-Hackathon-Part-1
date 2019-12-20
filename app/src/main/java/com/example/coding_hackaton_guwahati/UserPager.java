@@ -10,6 +10,7 @@ public class UserPager extends FragmentStatePagerAdapter {
 
     private maintenance_request tab0 = null;
     private UserSurveyList tab1 = null;
+    private user_profile tab2 = null;
 
     //integer to count number of tabs
     int tabCount;
@@ -36,6 +37,11 @@ public class UserPager extends FragmentStatePagerAdapter {
                     tab1 = new UserSurveyList();
                 }
                 return tab1;
+            case 2:
+                if(tab2 == null){
+                    tab2 = new user_profile();
+                }
+                return tab2;
 
             default:
                 return null;
