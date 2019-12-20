@@ -49,13 +49,15 @@
         android:id="@+id/input_passwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432"
-        tools:layout_editor_absoluteX="63dp" />
+        app:layout_constraintVertical_bias="0.419" />
 
     <EditText
         android:id="@+id/input_confirm_passwd"
