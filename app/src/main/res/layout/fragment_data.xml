@@ -1,71 +1,76 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/fragmentData_name"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Name"
-        android:layout_marginTop="30dp"/>
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/fragmentData_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Description"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Project name"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/fragmentData_contr_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_description"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Contractor Name"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Project description"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/fragmentData_contr_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_contr_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Status"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_contr_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Contractor name"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/fragmentData_contr_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_contr_status"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Starting Date"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_contr_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Project status"
+            android:inputType="textPersonName"
+            android:maxLines="4" />
 
-    <Button
-        android:id="@+id/btn_submit_feedback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fragmentData_contr_time"
-        android:layout_marginTop="49dp"
-        android:text="SUBMIT FEEDBACK" />
+        <EditText
+            android:id="@+id/fragmentData_contr_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Project starting date"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btn_submit_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Button"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
