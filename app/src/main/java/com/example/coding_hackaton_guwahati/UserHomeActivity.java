@@ -24,7 +24,7 @@ public class UserHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_home);
 
         mTopToolbar = findViewById(R.id.my_toolbar);
-        mTopToolbar.setTitle("Name of the app");
+        mTopToolbar.setTitle("Roadseva");
         setSupportActionBar(mTopToolbar);
 
         tabLayout = findViewById(R.id.tab_layout);
