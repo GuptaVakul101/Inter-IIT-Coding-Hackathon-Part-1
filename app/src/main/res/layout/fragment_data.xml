@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragmentData_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Project Name"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/fragmentData_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@+id/fragmentData_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Project Description"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/fragmentData_contr_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@+id/fragmentData_description"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Contractor Name"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/fragmentData_contr_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@+id/fragmentData_contr_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Project Status"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/fragmentData_contr_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@+id/fragmentData_contr_status"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Project Starting Date"
+        android:layout_marginTop="30dp"/>
+
+
+
+</RelativeLayout>

@@ -1,14 +1,10 @@
 package com.example.coding_hackaton_guwahati;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,6 +13,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +38,7 @@ public class ContractorSignupActivity extends AppCompatActivity {
     EditText companyText, emailText;
     Spinner regionSpinner;
     Button signupBtn;
+    TextView loginLink;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -52,6 +52,7 @@ public class ContractorSignupActivity extends AppCompatActivity {
         companyText = findViewById(R.id.input_company);
         emailText = findViewById(R.id.input_email);
         signupBtn = findViewById(R.id.btn_signup);
+        loginLink = findViewById(R.id.display_login);
 
         regionSpinner = findViewById(R.id.choose_region);
 
@@ -130,6 +131,14 @@ public class ContractorSignupActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
+
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finish the registration screen and return to the Login activity
+                finish();
+            }
+        });
     }
 
     public void signup() {
@@ -251,14 +260,17 @@ public class ContractorSignupActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            GMailSender sender = new GMailSender("lavish00gulati@gmail.com",
-                    "Lg8837587006@");
+            String email = emailText.getText().toString();
+            Log.d("myEmail", email);
+
+            GMailSender sender = new GMailSender("codingclubiitg@gmail.com","compiling");
             try {
                 sender.sendMail("Login password", "Your login password is: " + this.password,
-                        "codingclubiitg@gmail.com", "cgupta3131@gmail.com");
+                        "codingclubiitg@gmail.com", email);
                 progressDialog.dismiss();
                 onSignupSuccess();
             } catch (Exception e) {
+                Log.d("myEmail", "mail not sent");
                 progressDialog.dismiss();
                 onSignupFailed();
             }

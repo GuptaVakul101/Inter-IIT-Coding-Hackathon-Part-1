@@ -82,7 +82,7 @@ public class UserSurveyList extends Fragment
                         @Override
                         public void onBindViewHolder(@NonNull ViewHolder holder, int position)
                         {
-                            Projects project_details = project_list.get(position);
+                            final Projects project_details = project_list.get(position);
 
                             holder.txtProjectName.setText("Name: " + project_details.getName());
                             holder.txtProjectDesciption.setText("Description: " + project_details.getDescription());
@@ -93,7 +93,13 @@ public class UserSurveyList extends Fragment
                                 public void onClick(View v)
                                 {
                                     Intent i = new Intent(getActivity().getApplicationContext(), Project_Details.class);
+                                    Prevalent.project_id = project_details.getId();
+
                                     startActivity(i);
+
+//                                    Intent i = new Intent(getActivity().getApplicationContext(), MapsActivity.class);
+//                                    i.putExtra("project_id", project_details.getId());
+//                                    startActivity(i);
                                 }
                             });
                         }
