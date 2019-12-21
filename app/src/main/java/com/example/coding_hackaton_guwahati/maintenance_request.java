@@ -38,6 +38,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -88,6 +89,7 @@ public class maintenance_request extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String email = user.getEmail();
     String group_id;
+    Double Radius = 5.00;
 
     private final static int ALL_PERMISSIONS_RESULT = 101;
     LocationTrack locationTrack;
@@ -128,6 +130,7 @@ public class maintenance_request extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 db.collection("users")
                         .whereEqualTo("email", email)
                         .get()
@@ -135,58 +138,101 @@ public class maintenance_request extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult())
-                                    {
+
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
                                         Log.d("chirag", document.getId() + " => " + document.getData());
-                                        String user_id = document.getId();
-                                        group_id = "chigu";
+                                        final String user_id = document.getId();
+                                        db.collection("groups_complaint").whereEqualTo("is_resolved", false).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                                        uploadImage(group_id);
-                                        uploadVideo(group_id);
-                                        locationTrack = new LocationTrack(getActivity());
-                                        double longitude = 0;
-                                        double latitude = 0;
-                                        if (locationTrack.canGetLocation()) {
+                                                locationTrack = new LocationTrack(getActivity());
+                                                double longitude = 0;
+                                                double latitude = 0;
+                                                if (locationTrack.canGetLocation()) {
+                                                    longitude = locationTrack.getLongitude();
+                                                    latitude = locationTrack.getLatitude();
 
+                                                    Toast.makeText(getActivity(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
+                                                } else {
 
-                                            longitude = locationTrack.getLongitude();
-                                            latitude = locationTrack.getLatitude();
+                                                    locationTrack.showSettingsAlert();
+                                                }
 
-                                            Toast.makeText(getActivity(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
-                                        } else {
-
-                                            locationTrack.showSettingsAlert();
-                                        }
-                                        isempty = false;
-                                        filePath_Video = null;
-                                        filePath = null;
-                                        lbl_video.setText("NO VIDEO UPLOADED");
-
-                                        // feed in the database
-                                        Map<String, Object> user_comp = new HashMap<>();
-                                        user_comp.put("group_ref", group_id);
-                                        user_comp.put("latitude", latitude);
-                                        user_comp.put("longitude", longitude);
-                                        user_comp.put("user_ref", user_id);
-                                        user_comp.put("remarks", rem.getText().toString());
-                                        db.collection("user_complaints")
-                                                .add(user_comp)
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onSuccess(DocumentReference documentReference) {
-                                                        Toast.makeText(getActivity(), "Complaint uploaded successfully", Toast.LENGTH_SHORT).show();
+                                                if (task.isSuccessful()) {
+                                                    group_id = "dummy";
+                                                    Integer number_of_comp = 0;
+                                                    for (QueryDocumentSnapshot document2 : task.getResult()) {
+                                                        Map<String, Object> data = document2.getData();
+                                                        Double x = Double.valueOf(data.get("centre_latitude").toString());
+                                                        Double y = Double.valueOf(data.get("centre_longitude").toString());
+                                                        Double opt = (x - latitude) * (x - latitude) + (y - longitude) * (y-longitude);
+                                                        if(opt<=Radius){
+                                                            group_id = document2.getId().toString();
+                                                            number_of_comp = Integer.valueOf(data.get("num_complaints").toString());
+                                                            break;
+                                                        }
                                                     }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getActivity(), "Complaint failed", Toast.LENGTH_SHORT).show();
+                                                    if(group_id == "dummy"){
+
+                                                        Map<String, Object> group_comp = new HashMap<>();
+                                                        group_comp.put("centre_latitude", latitude);
+                                                        group_comp.put("centre_longitude", longitude);
+                                                        group_comp.put("is_resolved", false);
+                                                        group_comp.put("num_complaints", 1);
+                                                        DocumentReference newRef=db.collection("groups_complaint").document();
+                                                        newRef.set(group_comp);
+                                                        group_id=newRef.getId().toString();
+                                                        Log.d("Chi",group_id);
+                                                    }else{
+                                                        db.collection("groups_complaint").document(group_id).update("num_complaints", number_of_comp + 1)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void aVoid) {
+                                                                Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                                            }
+                                                        })
+                                                        .addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Log.w(TAG, "Error updating document", e);
+                                                            }
+                                                        });
                                                     }
-                                                });
-                                        rem.setText("REMARKS");
-                                        imageView.setImageResource(android.R.color.transparent);
+                                                    // to do
+                                                    uploadImage(group_id);
+                                                    uploadVideo(group_id);
+                                                    isempty = false;
+                                                    filePath_Video = null;
+                                                    filePath = null;
+                                                    lbl_video.setText("NO VIDEO UPLOADED");
 
-
+                                                    // feed in the database
+                                                    Map<String, Object> user_comp = new HashMap<>();
+                                                    user_comp.put("group_ref", group_id);
+                                                    user_comp.put("latitude", latitude);
+                                                    user_comp.put("longitude", longitude);
+                                                    user_comp.put("user_ref", user_id);
+                                                    user_comp.put("remarks", rem.getText().toString());
+                                                    db.collection("user_complaints")
+                                                            .add(user_comp)
+                                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                @Override
+                                                                public void onSuccess(DocumentReference documentReference) {
+                                                                    Toast.makeText(getActivity(), "Complaint uploaded successfully", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Toast.makeText(getActivity(), "Complaint failed", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+                                                    rem.setText("REMARKS");
+                                                    imageView.setImageResource(android.R.color.transparent);
+                                                }
+                                            }
+                                        });
                                     }
                                 } else {
                                     Log.d(TAG, "Error getting documents: ", task.getException());
@@ -208,11 +254,6 @@ public class maintenance_request extends Fragment {
         }
         return view;
     }
-
-    private void secondFxn(String user_id) {
-
-    }
-
     private void chooseVideo() {
         Intent intent = new Intent();
         intent.setType("video/*");
@@ -428,7 +469,7 @@ public class maintenance_request extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(locationTrack!=null){
+        if (locationTrack != null) {
             locationTrack.stopListener();
         }
     }
