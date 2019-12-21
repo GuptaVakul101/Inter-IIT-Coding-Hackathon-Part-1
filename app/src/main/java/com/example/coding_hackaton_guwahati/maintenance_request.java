@@ -209,11 +209,16 @@ public class maintenance_request extends Fragment {
 
                                                     // feed in the database
                                                     Map<String, Object> user_comp = new HashMap<>();
-                                                    user_comp.put("group_ref", group_id);
+
+                                                    DocumentReference groupRef = db.document("groups_complaint/" + group_id);
+                                                    user_comp.put("group_ref", groupRef);
                                                     user_comp.put("latitude", latitude);
                                                     user_comp.put("longitude", longitude);
-                                                    user_comp.put("user_ref", user_id);
+                                                    DocumentReference userRef = db.document("users/" + user_id);
+
+                                                    user_comp.put("user_ref", userRef);
                                                     user_comp.put("remarks", rem.getText().toString());
+
                                                     db.collection("user_complaints")
                                                             .add(user_comp)
                                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -228,7 +233,7 @@ public class maintenance_request extends Fragment {
                                                                     Toast.makeText(getActivity(), "Complaint failed", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             });
-                                                    rem.setText("REMARKS");
+                                                    rem.setText("");
                                                     imageView.setImageResource(android.R.color.transparent);
                                                 }
                                             }

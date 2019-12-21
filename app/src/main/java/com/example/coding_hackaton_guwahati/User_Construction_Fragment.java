@@ -107,7 +107,7 @@ public class User_Construction_Fragment extends Fragment {
         imageView = view.findViewById(R.id.imgView);
         btnvideo = view.findViewById(R.id.btn_take_video);
         lbl_video = view.findViewById(R.id.lbl_video_name);
-//        user_stat = view.findViewById(R.id.txt_user_status);
+        user_stat = view.findViewById(R.id.txt_user_status);
         Log.d("vakul", projectID);
         btnvideo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,11 +151,15 @@ public class User_Construction_Fragment extends Fragment {
                                         // feed in the database
                                         Map<String, Object> user_comp = new HashMap<>();
                                         user_comp.put("media_path", "/" + projectID + "/media/" + user_id);
-                                        user_comp.put("user_ref", user_id);
-                                        user_comp.put("project_ref", projectID);
+
+                                        DocumentReference userRef = db.document("users/"+user_id);
+                                        DocumentReference projectRef = db.document("projects/"+projectID);
+
+                                        user_comp.put("user_ref", userRef);
+                                        user_comp.put("project_ref", projectRef);
                                         user_comp.put("remarks", rem.getText().toString());
                                         user_comp.put("time", Timestamp.now());
-                                        user_comp.put("user_status", "60");
+                                        user_comp.put("user_status", Integer.valueOf(user_stat.getText().toString()));
 
                                         db.collection("user_survey")
                                                 .add(user_comp)
