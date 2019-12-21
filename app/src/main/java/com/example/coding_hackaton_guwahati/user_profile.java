@@ -61,10 +61,10 @@ public class user_profile extends Fragment {
                                 String fn = data.get("first_name").toString();
                                 String ln = data.get("last_name").toString();
                                 String cred = data.get("credits").toString();
-                                email2.setText(email);
-                                fn2.setText(fn);
-                                ln2.setText(ln);
-                                credits2.setText(cred);
+                                email2.setText("Email: " + email);
+                                fn2.setText("First name: " + fn);
+                                ln2.setText("Last name: " + ln);
+                                credits2.setText("Credits: " + cred);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
