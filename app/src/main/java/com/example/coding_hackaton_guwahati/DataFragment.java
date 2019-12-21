@@ -1,6 +1,7 @@
 package com.example.coding_hackaton_guwahati;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +35,7 @@ import java.util.TimeZone;
 public class DataFragment extends Fragment
 {
 
-    private String proeject_id = Prevalent.project_id;
+    private String project_id = Prevalent.project_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -48,6 +50,14 @@ public class DataFragment extends Fragment
             final TextView contractor_name = v.findViewById(R.id.fragmentData_contr_name);
             final TextView project_status = v.findViewById(R.id.fragmentData_contr_status);
             final TextView project_date = v.findViewById(R.id.fragmentData_contr_time);
+            final Button submit = v.findViewById(R.id.btn_submit_feedback);
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(getActivity().getApplicationContext(), User_Construction_Survey.class);
+                    startActivity(i);
+                }
+            });
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference doc_ref = db.collection("projects").document(Prevalent.project_id);
