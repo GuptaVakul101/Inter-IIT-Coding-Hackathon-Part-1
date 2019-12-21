@@ -22,8 +22,11 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Project name"
-            android:inputType="textPersonName"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:inputType="none"
+            android:enabled="false"
+            android:focusable="false"
+            android:clickable="false"/>
 
         <EditText
             android:id="@+id/fragmentData_description"
@@ -32,7 +35,11 @@
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="Project description"
-            android:inputType="textPersonName" />
+            android:inputType="none"
+            android:enabled="false"
+            android:focusable="false"
+            android:clickable="false"
+            />
 
         <EditText
             android:id="@+id/fragmentData_contr_name"
@@ -41,7 +48,10 @@
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="Contractor name"
-            android:inputType="textPersonName" />
+            android:inputType="none"
+            android:enabled="false"
+            android:focusable="false"
+            android:clickable="false"/>
 
         <EditText
             android:id="@+id/fragmentData_contr_status"
@@ -50,8 +60,11 @@
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="Project status"
-            android:inputType="textPersonName"
-            android:maxLines="4" />
+            android:maxLines="4"
+            android:inputType="none"
+            android:enabled="false"
+            android:focusable="false"
+            android:clickable="false"/>
 
         <EditText
             android:id="@+id/fragmentData_contr_time"
@@ -60,7 +73,10 @@
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="Project starting date"
-            android:inputType="textPersonName" />
+            android:inputType="none"
+            android:enabled="false"
+            android:focusable="false"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/btn_submit_feedback"
@@ -68,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Button"
+            android:text="Submit Feedback"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
