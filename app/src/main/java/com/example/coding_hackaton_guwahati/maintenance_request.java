@@ -135,11 +135,12 @@ public class maintenance_request extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                    for (QueryDocumentSnapshot document : task.getResult())
+                                    {
                                         Log.d("chirag", document.getId() + " => " + document.getData());
                                         String user_id = document.getId();
-                                        //group_id;
-                                        
+                                        group_id = "chigu";
+
                                         uploadImage(group_id);
                                         uploadVideo(group_id);
                                         locationTrack = new LocationTrack(getActivity());
