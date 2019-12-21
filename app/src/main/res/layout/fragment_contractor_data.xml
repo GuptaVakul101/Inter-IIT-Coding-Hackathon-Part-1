@@ -20,6 +20,7 @@
         <EditText
             android:id="@+id/fragmentData_name"
             android:layout_width="match_parent"
+            android:focusable="false"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Title"
@@ -28,6 +29,7 @@
         <EditText
             android:id="@+id/fragmentData_description"
             android:layout_width="match_parent"
+            android:focusable="false"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ems="10"
@@ -38,6 +40,7 @@
             android:id="@+id/fragmentData_contr_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="Start time of the project"
