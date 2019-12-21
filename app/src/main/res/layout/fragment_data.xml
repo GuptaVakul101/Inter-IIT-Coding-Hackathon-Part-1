@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragmentData_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:text="Project Name"
+        />
+
+    <TextView
+        android:id="@+id/fragmentData_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:text="Project Description"
+        />
+
+    <TextView
+        android:id="@+id/fragmentData_contr_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:text="Contractor Name"
+        />
+
+    <TextView
+        android:id="@+id/fragmentData_contr_status"
+        android:layout_width="402dp"
+        android:layout_height="match_parent"
+        android:text="Status of the Project"
+        android:textSize="20dp" />
+
+
+</LinearLayout>
