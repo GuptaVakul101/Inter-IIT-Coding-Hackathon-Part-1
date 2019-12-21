@@ -138,7 +138,7 @@ public class maintenance_request extends Fragment {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         Log.d("chirag", document.getId() + " => " + document.getData());
                                         String user_id = document.getId();
-                                        group_id;
+                                        //group_id;
                                         
                                         uploadImage(group_id);
                                         uploadVideo(group_id);

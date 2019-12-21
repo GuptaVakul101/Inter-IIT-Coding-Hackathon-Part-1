@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class UserSignupActivity extends AppCompatActivity {
 
     EditText firstNameText, lastNameText, emailText, passwdText, confirmPasswdText;
     Button signupButton;
+    TextView loginLink;
 
     int minPassLength = 6;
     int maxPassLength = 16;
@@ -49,6 +51,7 @@ public class UserSignupActivity extends AppCompatActivity {
         passwdText = findViewById(R.id.input_passwd);
         confirmPasswdText = findViewById(R.id.input_confirm_passwd);
         signupButton = findViewById(R.id.btn_signup);
+        loginLink = findViewById(R.id.display_login);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +61,14 @@ public class UserSignupActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
+
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finish the registration screen and return to the Login activity
+                finish();
+            }
+        });
     }
 
     public void signup() {

@@ -1,5 +1,6 @@
 package com.example.coding_hackaton_guwahati;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,18 +21,30 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
 {
     private static final int REQUEST_USER_SIGNUP = 0;
     private static final int REQUEST_USER_HOME = 1;
     private static final int REQUEST_CONTRACTOR_SIGNUP = 3;
+    private static final int REQUEST_CONTRACTOR_HOME = 4;
 
     TextView signupUserLink, signupContractorLink;
     EditText emailText, passwdText;
@@ -46,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth.AuthStateListener mAuthListener;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public void onStart() {
@@ -83,12 +97,28 @@ public class MainActivity extends AppCompatActivity
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 if(firebaseAuth.getCurrentUser() != null) {
-                    Log.d("Fuck", "Chirag Gupta");
-                    Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
-                    startActivity(intent);
+                    CollectionReference users = db.collection("users");
+                    Query query = users.whereEqualTo("email", String.valueOf(firebaseAuth.getCurrentUser().getEmail()));
+                    query.get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        if(task.getResult().isEmpty()){
+                                            Intent intent = new Intent(getApplicationContext(), ContractorHomeActivity.class);
+                                            startActivityForResult(intent, REQUEST_CONTRACTOR_HOME);
+                                        }
+                                        else{
+                                            Intent intent = new Intent(getApplicationContext(), UserHomeActivity.class);
+                                            startActivityForResult(intent, REQUEST_USER_HOME);
+                                        }
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Try again", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                 }
                 else {
-                    Log.d("Fuck", "Chirag Gupta2");
                 }
             }
         };
@@ -127,8 +157,27 @@ public class MainActivity extends AppCompatActivity
 
     private void updateUI(FirebaseUser user) {
         if(user != null){
-            Intent intent = new Intent(getApplicationContext(), UserHomeActivity.class);
-            startActivityForResult(intent, REQUEST_USER_HOME);
+            CollectionReference users = db.collection("users");
+            Query query = users.whereEqualTo("email", String.valueOf(user.getEmail()));
+            query.get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                if(task.getResult().isEmpty()){
+                                    Intent intent = new Intent(getApplicationContext(), ContractorHomeActivity.class);
+                                    startActivityForResult(intent, REQUEST_CONTRACTOR_HOME);
+                                }
+                                else{
+                                    Intent intent = new Intent(getApplicationContext(), UserHomeActivity.class);
+                                    startActivityForResult(intent, REQUEST_USER_HOME);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Try again", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
         }
     }
 

@@ -45,11 +45,19 @@ public class UserHomeActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-        tabLayout.getTabAt(0).setText("Home");
-        tabLayout.getTabAt(1).setText("Construction");
-        tabLayout.getTabAt(2).setText("Profile");
-//        tabLayout.getTabAt(1).setText("Existing projects");
-//        tabLayout.getTabAt(2).setText("Report a problem");
+//        tabLayout.getTabAt(0).setText("Maintenance");
+//        tabLayout.getTabAt(1).setText("Construction");
+//        tabLayout.getTabAt(2).setText("Profile");
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_domain_black_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_build_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_black_24dp);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab != null) tab.setCustomView(R.layout.layout_tab);
+        }
     }
 
     @Override
