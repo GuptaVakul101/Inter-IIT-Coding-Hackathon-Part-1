@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".maintenance_request">
+    tools:context=".maintenance_request"
+    android:windowSoftInputMode="adjustResize">
 
     <TextView
         android:id="@+id/textView"
@@ -28,6 +29,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
@@ -46,6 +48,7 @@
                 android:id="@+id/imgView"
                 android:layout_width="200dp"
                 android:layout_height="283dp"
+                android:background="@color/colorLightDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -73,8 +76,8 @@
 
             <Button
                 android:id="@+id/btn_take_video"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/add_video" />
 
             <TextView
@@ -97,7 +100,7 @@
             android:gravity="bottom|start"
             android:hint="Remarks"
             android:inputType="textMultiLine"
-            android:lines="4"
+            android:lines="3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
