@@ -15,11 +15,12 @@ tools:context=".User_Construction_Fragment">
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Construction"
+        android:text="Give Feedback on status of Construction"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,6 @@ tools:context=".User_Construction_Fragment">
                 android:id="@+id/imgView"
                 android:layout_width="200dp"
                 android:layout_height="283dp"
-                android:background="@color/colorLightDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -63,16 +63,6 @@ tools:context=".User_Construction_Fragment">
                 app:layout_constraintTop_toTopOf="@+id/imgView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <EditText
-            android:id="@+id/user_remarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="bottom|start"
-            android:hint="Remarks"
-            android:inputType="textMultiLine"
-            android:lines="4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,6 +88,31 @@ tools:context=".User_Construction_Fragment">
                 android:textSize="18sp" />
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/user_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="bottom|start"
+            android:hint="Remarks"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/txt_user_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="number"
+            android:gravity="bottom|start"
+            android:hint="Status(Out of 100)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_submit"

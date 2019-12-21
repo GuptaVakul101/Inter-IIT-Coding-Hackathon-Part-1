@@ -105,6 +105,8 @@ public class UserSignupActivity extends AppCompatActivity {
                                 user.put("last_name", lastName);
                                 user.put("email", email);
                                 user.put("password", password);
+                                user.put("credits", 0);
+
 
                                 db.collection("users")
                                         .add(user)
