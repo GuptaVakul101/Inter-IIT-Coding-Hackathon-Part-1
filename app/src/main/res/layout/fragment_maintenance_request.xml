@@ -15,21 +15,26 @@
         android:text="Take Photo"
         app:layout_constraintBottom_toTopOf="@+id/imgView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857" />
 
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_take_video"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
         android:text="SUBMIT COMPLAINT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +44,7 @@
         android:id="@+id/user_remarks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
         android:ems="10"
         android:hint="REMARKS"
         android:inputType="textMultiLine|textFilter"
@@ -50,18 +56,22 @@
         android:id="@+id/btn_take_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="TAKE VIDEO"
         app:layout_constraintBottom_toTopOf="@+id/lbl_video_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/lbl_video_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="NO VIDEO UPLOADED"
         app:layout_constraintBottom_toTopOf="@+id/user_remarks"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

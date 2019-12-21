@@ -142,7 +142,6 @@ public class maintenance_request extends Fragment {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         Log.d("chirag", document.getId() + " => " + document.getData());
                                         final String user_id = document.getId();
-
                                         db.collection("groups_complaint").whereEqualTo("is_resolved", false).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -255,11 +254,6 @@ public class maintenance_request extends Fragment {
         }
         return view;
     }
-
-    private void secondFxn(String user_id) {
-
-    }
-
     private void chooseVideo() {
         Intent intent = new Intent();
         intent.setType("video/*");
