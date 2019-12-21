@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.coding_hackaton_guwahati">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Contractor_Project_Details"></activity>
+        <activity
+            android:name=".ContractorHomePageActivity"
+            android:label="@string/title_activity_contractor_home_page"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -25,8 +24,7 @@
         -->
         <activity
             android:name=".MapsActivity2"
-            android:label="@string/title_activity_maps2"></activity>
-
+            android:label="@string/title_activity_maps2" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -39,7 +37,6 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity android:name=".Project_Details" />
-        <activity android:name=".ContractorHomeActivity" />
         <activity android:name=".ContractorSignupActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".UserSignupActivity" />
@@ -50,17 +47,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
 
     <uses-feature android:name="android.hardware.camera" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

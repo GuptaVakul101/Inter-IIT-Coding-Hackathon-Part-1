@@ -1,14 +1,12 @@
 package com.example.coding_hackaton_guwahati;
 
-import android.content.Context;
+
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -34,38 +32,37 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MapsFragment extends Fragment implements OnMapReadyCallback
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ContractorMapsFragment extends Fragment implements OnMapReadyCallback
 {
     SupportMapFragment mapFragment;
     private GoogleMap mMap;
-    private String project_id = "";
-    public MapsFragment() {
+    public ContractorMapsFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_maps, container, false);
-
-
+        View v = inflater.inflate(R.layout.fragment_contractor_maps, container, false);
         if(v != null)
         {
-            mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_maps);
+            mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_contractor_maps);
             if(mapFragment == null)
             {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 mapFragment = SupportMapFragment.newInstance();
-                ft.replace(R.id.fragment_maps, mapFragment).commit();
+                ft.replace(R.id.fragment_contractor_maps, mapFragment).commit();
             }
 
             mapFragment.getMapAsync(this);
-
         }
+
         return v;
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap)
@@ -74,7 +71,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference doc_ref = db.collection("projects").document(Prevalent.project_id);
-
 
         doc_ref.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
@@ -105,19 +101,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback
                         Toast.makeText(getActivity(),"Internet Not Working Properly", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-//        Log.d("Lavish", Prevalent.project_id);
-//        double latitude = 22.5;
-//        double longitude = 88.7;
-//        LatLng latLng = new LatLng(latitude, longitude);
-//        mMap.addMarker(new MarkerOptions().position(latLng).title(getCompleteAddress(latitude,longitude)));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14F));
     }
 
     private String getCompleteAddress(double Latitude, double Longitutde)
     {
         String address = "";
-
         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
         try{

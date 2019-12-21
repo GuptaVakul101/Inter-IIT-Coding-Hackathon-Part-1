@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged(@NonNull final FirebaseAuth firebaseAuth) {
 
                 if(firebaseAuth.getCurrentUser() != null) {
                     CollectionReference users = db.collection("users");
@@ -105,7 +105,9 @@ public class MainActivity extends AppCompatActivity
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
                                         if(task.getResult().isEmpty()){
-                                            Intent intent = new Intent(getApplicationContext(), ContractorHomeActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), ContractorHomePageActivity.class);
+                                            Prevalent.contractor_email_id = String.valueOf(firebaseAuth.getCurrentUser().getEmail());
+
                                             startActivityForResult(intent, REQUEST_CONTRACTOR_HOME);
                                         }
                                         else{
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(final FirebaseUser user) {
         if(user != null){
             CollectionReference users = db.collection("users");
             Query query = users.whereEqualTo("email", String.valueOf(user.getEmail()));
@@ -165,7 +167,8 @@ public class MainActivity extends AppCompatActivity
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 if(task.getResult().isEmpty()){
-                                    Intent intent = new Intent(getApplicationContext(), ContractorHomeActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), ContractorHomePageActivity.class);
+                                    Prevalent.contractor_email_id = user.getEmail();
                                     startActivityForResult(intent, REQUEST_CONTRACTOR_HOME);
                                 }
                                 else{
