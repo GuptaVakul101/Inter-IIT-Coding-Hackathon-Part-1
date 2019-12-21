@@ -84,9 +84,9 @@ public class UserSurveyList extends Fragment
                         {
                             final Projects project_details = project_list.get(position);
 
-                            holder.txtProjectName.setText("Name: " + project_details.getName());
-                            holder.txtProjectDesciption.setText("Description: " + project_details.getDescription());
-                            holder.txtProjectSurveyCount.setText("Number of Surveys Done: " + project_details.getNum_users());
+                            holder.txtProjectName.setText(project_details.getName());
+                            holder.txtProjectDesciption.setText(project_details.getDescription());
+                            holder.txtProjectSurveyCount.setText("Number of surveys done: " + project_details.getNum_users());
                             holder.parentlayout.setOnClickListener(new View.OnClickListener()
                             {
                                 @Override

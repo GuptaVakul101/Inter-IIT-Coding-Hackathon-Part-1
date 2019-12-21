@@ -26,6 +26,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -66,6 +68,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <EditText
+            android:id="@+id/user_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="bottom|start"
+            android:hint="Remarks"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,19 +105,6 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/user_remarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:gravity="bottom|start"
-            android:hint="Remarks"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_submit"
