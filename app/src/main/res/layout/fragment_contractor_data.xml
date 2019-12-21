@@ -1,118 +1,100 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/fragmentData_name"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Name"
-        android:layout_marginTop="30dp"/>
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/fragmentData_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Description"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/fragmentData_user_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_description"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Status as submitted by User"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/fragmentData_contr_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_below="@+id/fragmentData_user_status"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Project Starting Date"
-        android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/fragmentData_contr_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Start time of the project"
+            android:inputType="textPersonName" />
 
+        <EditText
+            android:id="@+id/txt_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:gravity="bottom|start"
+            android:hint="Status"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/lbl_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fragmentData_contr_time"
-        android:layout_marginLeft="15dp"
-        android:textSize="15dp"
-        android:layout_marginTop="35dp"
-        android:text="Status   "/>
+        <EditText
+            android:id="@+id/txt_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:gravity="bottom|start"
+            android:hint="Review"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="4" />
 
-    <TextView
-        android:id="@+id/lbl_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbl_status"
-        android:layout_marginLeft="15dp"
-        android:textSize="15dp"
-        android:layout_marginTop="40dp"
-        android:text="Reviews"/>
+        <TextView
+            android:id="@+id/fragmentData_user_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="Status given by the user" />
 
-    <EditText
-        android:id="@+id/txt_status"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/lbl_status"
-        android:layout_below="@+id/fragmentData_contr_time"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        />
+        <Button
+            android:id="@+id/download_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Download Report"
+            android:textColor="@android:color/white" />
 
-    <EditText
-        android:id="@+id/txt_review"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/lbl_review"
-        android:layout_below="@+id/lbl_status"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        />
-
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_review"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
-        android:text="Submit"
-        android:background="@color/colorPrimary"
-        />
-
-    <Button
-        android:id="@+id/download_report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_review"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="50dp"
-        android:layout_toRightOf="@+id/submit"
-        android:layout_marginLeft="110dp"
-        android:text="Download Report"
-        android:background="@color/colorPrimary"
-        />
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Submit"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
