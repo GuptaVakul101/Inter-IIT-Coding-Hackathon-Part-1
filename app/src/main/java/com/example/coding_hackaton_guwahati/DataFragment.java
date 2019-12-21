@@ -19,9 +19,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class DataFragment extends Fragment
@@ -41,6 +47,7 @@ public class DataFragment extends Fragment
             final TextView project_description = v.findViewById(R.id.fragmentData_description);
             final TextView contractor_name = v.findViewById(R.id.fragmentData_contr_name);
             final TextView project_status = v.findViewById(R.id.fragmentData_contr_status);
+            final TextView project_date = v.findViewById(R.id.fragmentData_contr_time);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference doc_ref = db.collection("projects").document(Prevalent.project_id);
@@ -54,11 +61,36 @@ public class DataFragment extends Fragment
                             if(snapshot.exists())
                             {
 
-                                project_name.setText("Project Name: " + snapshot.getDocumentReference("contractor_ref").toString());
+                                project_name.setText("Project Name: " + snapshot.getString("name"));
                                 project_description.setText("Project Description: " + snapshot.getString("description"));
-                                contractor_name.setText("Project Name: " + snapshot.getDocumentReference("contractor_ref"));
-                                project_status.setText("Project Status: " + snapshot.getDouble("contractor_status"));
+                                DocumentReference ref2 = snapshot.getDocumentReference("contractor_ref");
+                                ref2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
+                                {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot snapshot2)
+                                    {
+                                        if(snapshot2.exists()) {
+                                            contractor_name.setText("Contractor Name: " + snapshot2.getString("company_name"));
+                                        }
 
+                                        else {
+                                            contractor_name.setText("Contractor Name: Not Applicable");
+                                        }
+                                    }
+                                });
+
+                                Integer status = snapshot.getDouble("contractor_status").intValue();
+                                project_status.setText("Project Status: " + status.toString() + "%");
+
+                                Timestamp time = snapshot.getTimestamp("time");
+                                Long seconds = time.getSeconds();
+
+                                Date date = new Date(seconds*1000);
+                                SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+                                sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                                String formattedDate = sdf.format(date);
+
+                                project_date.setText("Project Started On: " + formattedDate.toString() );
 
                             }
                         }
@@ -71,8 +103,6 @@ public class DataFragment extends Fragment
                             Toast.makeText(getActivity(),"Internet Not Working Properly", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-
         }
         return v;
     }
