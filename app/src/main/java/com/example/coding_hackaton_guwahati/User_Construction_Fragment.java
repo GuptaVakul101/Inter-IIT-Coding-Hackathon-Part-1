@@ -35,7 +35,9 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -179,31 +181,42 @@ public class User_Construction_Fragment extends Fragment {
                                                 });
                                         rem.setText("REMARKS");
                                         imageView.setImageResource(android.R.color.transparent);
+
+
+                                        Integer credits = Integer.valueOf(document.getData().get("credits").toString());
+                                        String des_path2 = "/users/" + user_id;
+                                        DocumentReference ref4 = db.document(des_path2);
+
+                                        ref4.update("credits", credits+1)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+
+                                                    }
+                                                });
                                     }
                                 }
                             }
                         });
-
 
                 String des_path = "/projects/" + projectID;
                 DocumentReference ref3 = db.document(des_path);
 
                 ref3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onSuccess(DocumentSnapshot snapshot)
-                    {
-                        Integer num_users = snapshot.getDouble("num_users").intValue();
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Integer num_users = documentSnapshot.getDouble("num_users").intValue();
 
                         String des_path2 = "/projects/" + projectID;
                         DocumentReference ref4 = db.document(des_path2);
+
                         ref4.update("num_users", num_users+1)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Toast.makeText(getActivity(), "Updated Succesfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(),"Updated Succesfully", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(getActivity(), UserHomeActivity.class);
                                         startActivity(i);
-                                        ((Activity) getActivity()).overridePendingTransition(0, 0);
                                     }
                                 });
                     }
