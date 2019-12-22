@@ -1,6 +1,7 @@
 package com.example.coding_hackaton_guwahati;
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -35,6 +36,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -181,6 +183,31 @@ public class User_Construction_Fragment extends Fragment {
                                 }
                             }
                         });
+
+
+                String des_path = "/projects/" + projectID;
+                DocumentReference ref3 = db.document(des_path);
+
+                ref3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot snapshot)
+                    {
+                        Integer num_users = snapshot.getDouble("num_users").intValue();
+
+                        String des_path2 = "/projects/" + projectID;
+                        DocumentReference ref4 = db.document(des_path2);
+                        ref4.update("num_users", num_users+1)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(getActivity(), "Updated Succesfully", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getActivity(), UserHomeActivity.class);
+                                        startActivity(i);
+                                        ((Activity) getActivity()).overridePendingTransition(0, 0);
+                                    }
+                                });
+                    }
+                });
             }
         });
         //location
