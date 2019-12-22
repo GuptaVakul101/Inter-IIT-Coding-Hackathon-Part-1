@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+
+//        mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
@@ -96,32 +97,32 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onAuthStateChanged(@NonNull final FirebaseAuth firebaseAuth) {
 
-                if(firebaseAuth.getCurrentUser() != null) {
-                    CollectionReference users = db.collection("users");
-                    Query query = users.whereEqualTo("email", String.valueOf(firebaseAuth.getCurrentUser().getEmail()));
-                    query.get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        if(task.getResult().isEmpty()){
-                                            Intent intent = new Intent(getApplicationContext(), ContractorHomePageActivity.class);
-                                            Prevalent.contractor_email_id = String.valueOf(firebaseAuth.getCurrentUser().getEmail());
-
-                                            startActivityForResult(intent, REQUEST_CONTRACTOR_HOME);
-                                        }
-                                        else{
-                                            Intent intent = new Intent(getApplicationContext(), UserHomeActivity.class);
-                                            startActivityForResult(intent, REQUEST_USER_HOME);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(), "Try again", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
-                }
-                else {
-                }
+//                if(firebaseAuth.getCurrentUser() != null) {
+//                    CollectionReference users = db.collection("users");
+//                    Query query = users.whereEqualTo("email", String.valueOf(firebaseAuth.getCurrentUser().getEmail()));
+//                    query.get()
+//                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                                    if (task.isSuccessful()) {
+//                                        if(task.getResult().isEmpty()){
+//                                            Intent intent = new Intent(getApplicationContext(), ContractorHomePageActivity.class);
+//                                            Prevalent.contractor_email_id = String.valueOf(firebaseAuth.getCurrentUser().getEmail());
+//
+//                                            startActivityForResult(intent, REQUEST_CONTRACTOR_HOME);
+//                                        }
+//                                        else{
+//                                            Intent intent = new Intent(getApplicationContext(), UserHomeActivity.class);
+//                                            startActivityForResult(intent, REQUEST_USER_HOME);
+//                                        }
+//                                    } else {
+//                                        Toast.makeText(getBaseContext(), "Try again", Toast.LENGTH_LONG).show();
+//                                    }
+//                                }
+//                            });
+//                }
+//                else {
+//                }
             }
         };
 

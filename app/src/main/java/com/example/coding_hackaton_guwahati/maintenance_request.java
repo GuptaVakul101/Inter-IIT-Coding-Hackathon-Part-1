@@ -86,8 +86,8 @@ public class maintenance_request extends Fragment {
     private EditText rem;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String email = user.getEmail();
+    FirebaseUser user;
+    String email;
     String group_id;
     Double Radius = 5.00;
 
@@ -109,6 +109,8 @@ public class maintenance_request extends Fragment {
         btnvideo = view.findViewById(R.id.btn_take_video);
         lbl_video = view.findViewById(R.id.lbl_video_name);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null) email = user.getEmail();
 
         btnvideo.setOnClickListener(new View.OnClickListener() {
             @Override
