@@ -40,6 +40,7 @@ public class Contractor_Project_Adapter extends RecyclerView.Adapter<Contractor_
         final Projects project_details = mainUploadlist.get(position);
         holder.txtProjectName.setText("Project Name: " + project_details.getName() );
         holder.UserCount.setText("Number of Surveys Done: " + project_details.getNum_users());
+        holder.txtProjectDesc.setText("Project Description: " + project_details.getDescription());
 
         holder.parentlayout.setOnClickListener(new View.OnClickListener()
         {
@@ -62,7 +63,7 @@ public class Contractor_Project_Adapter extends RecyclerView.Adapter<Contractor_
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView txtProjectName, UserCount;
+        public TextView txtProjectName, UserCount, txtProjectDesc;
         public CardView parentlayout;
 
         public ViewHolder(@NonNull View itemView)
@@ -71,6 +72,7 @@ public class Contractor_Project_Adapter extends RecyclerView.Adapter<Contractor_
             txtProjectName = itemView.findViewById(R.id.project_name);
             UserCount = itemView.findViewById(R.id.project_survey_count);
             parentlayout = itemView.findViewById(R.id.cardview_survey_contractor);
+            txtProjectDesc = itemView.findViewById(R.id.project_desc);
 
         }
     }

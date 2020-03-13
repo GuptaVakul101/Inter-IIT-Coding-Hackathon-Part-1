@@ -48,7 +48,7 @@ public class ContractorHomePageActivity extends AppCompatActivity
         setContentView(R.layout.activity_contractor_home_page);
 
         mTopToolbar = findViewById(R.id.my_toolbar);
-        mTopToolbar.setTitle("Name of the app");
+        mTopToolbar.setTitle("RoadSeva");
         setSupportActionBar(mTopToolbar);
 
         recyclerView = findViewById(R.id.contractor_project_list);
